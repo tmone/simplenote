@@ -264,10 +264,18 @@ $$(document).on('deviceready', function () {
   });
   $$(".delete-note").on("click", function () {
     var id = $$(this).data("id");
+    app.toast.create({
+      text: id,
+      closeTimeout: 2000,
+    }).open();
     deleteLSM("DATA", { ID: id }, "ID");    
   });
   $$('.deleted-callback').on('swipeout:deleted', function () {
     var id = $$(this).data("id");
+    app.toast.create({
+      text: id,
+      closeTimeout: 2000,
+    }).open();
     deleteLSM("DATA", { ID: id }, "ID");    
   });
 });

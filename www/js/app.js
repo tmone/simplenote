@@ -152,7 +152,7 @@ $$(document).on('deviceready', function () {
     // List item Template7 template
     itemTemplate:
       '<li class="swipeout deleted-callback" data-id="{{ID}}">' +
-      '<div class="swipeout-content ">' +
+      '<div class="swipeout-content "  data-id="{{ID}}">' +
       '<a href="/note/{{ID}}/" class="item-link item-content">' +
       '<div class="item-inner search-avaliable">' +
       '<div class="item-title-row">' +
@@ -169,7 +169,7 @@ $$(document).on('deviceready', function () {
       '<div class="swipeout-actions-left">' +
       '<a href="#" class="swipeout-overswipe copy-single" data-id="{{ID}}"><i class="icon f7-icons  ios-only">attachment</i><i class="icon material-icons md-only">attach_file</i></a>' +
       '</div>' +
-      '<div class="swipeout-actions-right">' +
+      '<div class="swipeout-actions-right"  data-id="{{ID}}">' +
       '<a data-id="{{ID}}" href="#" data-confirm="Are you sure you want to delete this item?" ' +
       ' class="swipeout-delete delete-note"><i class="icon f7-icons  ios-only">trash</i><i class="icon material-icons md-only">delete</i></a>' +
       '</div>' +
@@ -195,7 +195,7 @@ $$(document).on('deviceready', function () {
 
   $$(".copy-all").on("click", function () {
     var key = dateKey(app.data.current);
-    var g = key.Split().reserve().join().replace(/[-]/g,"/");
+    var g = key.split('').reverse().join('').replace(/[-]/g,"/");
     selectLSM("DATA", { KEY: key }, "KEY", function (rs) {
       var str = "Date: "+g+"\n";
       for (var i = 0; i < rs.length; i++) {

@@ -117,7 +117,8 @@ app.data.calenda = app.calendar.create({
     },
     dayClick: function (calendar, dayEl, year, month, day) {
       //app.panel.close("left",true);
-      var date = new Date(year, month, day);
+      var date = new Date(year, month, day, 7,0,0);
+      //date = new Date(d.getTime() - (d.getTimezoneOffset() * 60000));
       app.data.current = date;
       app.methods.loadADate(date);
     }
@@ -170,7 +171,7 @@ $$(document).on('deviceready', function () {
       '</div>' +
       '<div class="swipeout-actions-right">' +
       '<a data-id="{{ID}}" href="#" data-confirm="Are you sure you want to delete this item?" ' +
-      ' class="swipeout-delete swipeout-overswipe delete-note"><i class="icon f7-icons  ios-only">trash</i><i class="icon material-icons md-only">delete</i></a>' +
+      ' class="swipeout-delete delete-note"><i class="icon f7-icons  ios-only">trash</i><i class="icon material-icons md-only">delete</i></a>' +
       '</div>' +
       '</li>',
     // Item height
@@ -194,18 +195,29 @@ $$(document).on('deviceready', function () {
 
   $$(".copy-all").on("click", function () {
     var key = dateKey(app.data.current);
+    var g = key.Split().reserve().join().replace(/[-]/g,"/");
     selectLSM("DATA", { KEY: key }, "KEY", function (rs) {
-      var str = "";
+      var str = "Date: "+g+"\n";
       for (var i = 0; i < rs.length; i++) {
         var t = rs[i];
-        str = str + `
-        Store: ${t.STORE},\t Date: ${t.KEY}
-        ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
-        ${t.NOTE}
+        str += "\n";
+        str += "Store: "+t.STORE+"\n";
+        str += "Vendor: "+t.VENDOR+"\n";
+        str += "Truck: "+t.TRUCK+"\n";
+        str += "Driver: "+t.DRIVER+"\n";
+        str += "PHONE: "+t.PHONE+"\n";
+        if(t.NOTE.length>0){
+          str += "Note: "+t.NOTE+"\n";
+        }
+        str += "\n";
+        // str = str + `
+        // Store: ${t.STORE},\t Date: ${t.KEY}
+        // ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
+        // ${t.NOTE}
         
-        `;
+        // `;
       }
-      if (str.length > 5) {
+      if (str.length > 10) {
         cordova.plugins.clipboard.copy(str,function(){
           app.toast.create({
             text: 'Copied!',
@@ -225,32 +237,27 @@ $$(document).on('deviceready', function () {
     });
   });
   $$(".copy-single").on("click", function () {
-    var id = $(this).data("id");
+    var id = $$(this).data("id");
     selectLSM("DATA", { ID: id }, "ID", function (rs) {
-      var str = "";
+      var str = "";//"Date: "+g+"\n";
       for (var i = 0; i < rs.length; i++) {
         var t = rs[i];
-        str = str + `
-        Store: ${t.STORE},\t Date: ${t.KEY}
-        ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
-        ${t.NOTE}
+        str += "\n";
+        str += "Store: "+t.STORE+"\n";
+        str += "Vendor: "+t.VENDOR+"\n";
+        str += "Truck: "+t.TRUCK+"\n";
+        str += "Driver: "+t.DRIVER+"\n";
+        str += "PHONE: "+t.PHONE+"\n";
+        if(t.NOTE.length>0){
+          str += "Note: "+t.NOTE+"\n";
+        }
+        str += "\n";
+        // str = str + `
+        // Store: ${t.STORE},\t Date: ${t.KEY}
+        // ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
+        // ${t.NOTE}
         
-        `;
-      }
-      if (str.length > 5) {
-        cordova.plugins.clipboard.copy(str,function(){
-          app.toast.create({
-            text: 'Copied!',
-            closeTimeout: 2000,
-          }).open();
-        },function(err){
-          console.log(err);
-        });
-      } else {
-        app.toast.create({
-          text: 'Nothing to copy...',
-          closeTimeout: 2000,
-        }).open();
+        // `;
       }
 
     });

@@ -14,8 +14,8 @@ var app = new Framework7({
   name: 'Framework7', // App name
   theme: 'auto', // Automatic theme detection
   swipeout: {
-    noFollow: true,
-    removeElements: true,
+    noFollow: false,
+    removeElements: false,
   },
   // App root data
   data: function () {
@@ -277,5 +277,13 @@ $$(document).on('deviceready', function () {
       closeTimeout: 2000,
     }).open();
     deleteLSM("DATA", { ID: id }, "ID");    
+  });
+  app.on("swipeoutDeleted",function(el){
+    var id =$$(el).data("id");
+    app.toast.create({
+      text: id,
+      closeTimeout: 2000,
+    }).open();
+    deleteLSM("DATA", { ID: id }, "ID");  
   });
 });

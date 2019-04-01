@@ -129,6 +129,7 @@ $$(document).on('deviceready', function () {
   console.log("Device is ready!");
   //
   var date = new Date();
+  date = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
   app.data.current = date;
   var key = dateKey(date);
 

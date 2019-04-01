@@ -194,18 +194,29 @@ $$(document).on('deviceready', function () {
 
   $$(".copy-all").on("click", function () {
     var key = dateKey(app.data.current);
+    var g = key.Split().reserve().join().replace(/[-]/g,"/");
     selectLSM("DATA", { KEY: key }, "KEY", function (rs) {
-      var str = "";
+      var str = "Date: "+g+"\n";
       for (var i = 0; i < rs.length; i++) {
         var t = rs[i];
-        str = str + `
-        Store: ${t.STORE},\t Date: ${t.KEY}
-        ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
-        ${t.NOTE}
+        str += "\n";
+        str += "Store: "+t.STORE+"\n";
+        str += "Vendor: "+t.VENDOR+"\n";
+        str += "Truck: "+t.TRUCK+"\n";
+        str += "Driver: "+t.DRIVER+"\n";
+        str += "PHONE: "+t.PHONE+"\n";
+        if(t.NOTE.length>0){
+          str += "Note: "+t.NOTE+"\n";
+        }
+        str += "\n";
+        // str = str + `
+        // Store: ${t.STORE},\t Date: ${t.KEY}
+        // ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
+        // ${t.NOTE}
         
-        `;
+        // `;
       }
-      if (str.length > 5) {
+      if (str.length > 10) {
         cordova.plugins.clipboard.copy(str,function(){
           app.toast.create({
             text: 'Copied!',
@@ -225,32 +236,27 @@ $$(document).on('deviceready', function () {
     });
   });
   $$(".copy-single").on("click", function () {
-    var id = $(this).data("id");
+    var id = $$(this).data("id");
     selectLSM("DATA", { ID: id }, "ID", function (rs) {
-      var str = "";
+      var str = "";//"Date: "+g+"\n";
       for (var i = 0; i < rs.length; i++) {
         var t = rs[i];
-        str = str + `
-        Store: ${t.STORE},\t Date: ${t.KEY}
-        ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
-        ${t.NOTE}
+        str += "\n";
+        str += "Store: "+t.STORE+"\n";
+        str += "Vendor: "+t.VENDOR+"\n";
+        str += "Truck: "+t.TRUCK+"\n";
+        str += "Driver: "+t.DRIVER+"\n";
+        str += "PHONE: "+t.PHONE+"\n";
+        if(t.NOTE.length>0){
+          str += "Note: "+t.NOTE+"\n";
+        }
+        str += "\n";
+        // str = str + `
+        // Store: ${t.STORE},\t Date: ${t.KEY}
+        // ${t.VENDOR}\t${t.TRUCK}\t${t.DRIVER}\t${t.PHONE}
+        // ${t.NOTE}
         
-        `;
-      }
-      if (str.length > 5) {
-        cordova.plugins.clipboard.copy(str,function(){
-          app.toast.create({
-            text: 'Copied!',
-            closeTimeout: 2000,
-          }).open();
-        },function(err){
-          console.log(err);
-        });
-      } else {
-        app.toast.create({
-          text: 'Nothing to copy...',
-          closeTimeout: 2000,
-        }).open();
+        // `;
       }
 
     });

@@ -11,11 +11,11 @@ var dateKey = function (d) {
             d= new Date();
         }
     }
-    d = new Date(d.getTime() - (d.getTimezoneOffset() * 60000));
+   // d = new Date(d.getTime() - (d.getTimezoneOffset() * 60000));
     //console.log(d);
     //var d = new Date();
-    return d.toISOString()
-        .split("T")[0];
+    return d.toJSON().substr(0,10);
+        //.split("T")[0];
 }
 function loadLSM(name, resultcallback) {
 

@@ -117,7 +117,8 @@ app.data.calenda = app.calendar.create({
     },
     dayClick: function (calendar, dayEl, year, month, day) {
       //app.panel.close("left",true);
-      var date = new Date(year, month, day);
+      var date = new Date(year, month, day, 7,0,0);
+      //date = new Date(d.getTime() - (d.getTimezoneOffset() * 60000));
       app.data.current = date;
       app.methods.loadADate(date);
     }

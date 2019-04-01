@@ -1,0 +1,1 @@
+{"plugins":["cordova-plugin-whitelist","cordova-plugin-nativestorage","cordova-plugin-dialogs","cordova-plugin-inappbrowser","cordova-plugin-statusbar","eeschiavo-cordova-plugin-clipboard"]}

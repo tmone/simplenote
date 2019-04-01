@@ -1,0 +1,72 @@
+{
+  "_from": "eeschiavo-cordova-plugin-clipboard",
+  "_id": "eeschiavo-cordova-plugin-clipboard@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-0wy1gMtMpXzIyiwcWG6jc9PtOZclSpkxG1TpTXaHnA7a/Wzk2rpEkK3KnCkCBeVDXvkTqVlhBQ2DAexD8THiTw==",
+  "_location": "/eeschiavo-cordova-plugin-clipboard",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "eeschiavo-cordova-plugin-clipboard",
+    "name": "eeschiavo-cordova-plugin-clipboard",
+    "escapedName": "eeschiavo-cordova-plugin-clipboard",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/eeschiavo-cordova-plugin-clipboard/-/eeschiavo-cordova-plugin-clipboard-1.0.1.tgz",
+  "_shasum": "7bffef7116784a1adc6d8ef90bfd120a48530740",
+  "_spec": "eeschiavo-cordova-plugin-clipboard",
+  "_where": "D:\\simplenote",
+  "author": {
+    "name": "Ernesto Schiavo"
+  },
+  "bugs": {
+    "url": "https://github.com/eeschiavo/cordova-plugin-clipboard/issues"
+  },
+  "bundleDependencies": false,
+  "cordova": {
+    "id": "eeschiavo-cordova-plugin-clipboard",
+    "platforms": [
+      "ios",
+      "android",
+      "wp8",
+      "windows"
+    ]
+  },
+  "deprecated": false,
+  "description": "Clipboard management plugin for Cordova/PhoneGap",
+  "engines": [
+    {
+      "name": "cordova",
+      "version": ">=4.0.0"
+    }
+  ],
+  "homepage": "https://github.com/eeschiavo/cordova-plugin-clipboard#readme",
+  "keywords": [
+    "clipboard",
+    "copy",
+    "paste",
+    "ecosystem:cordova",
+    "cordova-ios",
+    "cordova-android",
+    "cordova-wp8",
+    "cordova-windows"
+  ],
+  "license": "MIT",
+  "main": "clipboard.js",
+  "name": "eeschiavo-cordova-plugin-clipboard",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eeschiavo/cordova-plugin-clipboard.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.1"
+}

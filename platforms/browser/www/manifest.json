@@ -1,0 +1,12 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "Simple Note",
+  "short_name": "Simple Note",
+  "version": "vn.com.kerryexpress.simplenote",
+  "description": "A little tool support create note",
+  "author": "Tmone NVT",
+  "icons": [],
+  "start_url": "index.html",
+  "theme_color": "#cddc39"
+}

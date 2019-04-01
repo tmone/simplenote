@@ -1,0 +1,305 @@
+<template>
+    <div class="page">
+        <div class="navbar">
+            <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back">
+                        <i class="icon icon-back"></i>
+                        <span class="ios-only">Back</span>
+                    </a>
+                </div>
+                <div class="title">{{#js_if "this.data.ID>0"}}Note Edit{{else}}New Note{{/js_if}}</div>
+                <div class="right">
+                    <a class="link back save-data">
+                        <i class="icon f7-icons ios-only">save</i>
+                        <i class="icon material-icons md-only">save</i>
+                        Save
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="page-content">
+            <form class="list" id="my-form">
+                <input type="hidden" name="ID" placeholder="Select a date" readonly="readonly" value="{{data.ID}}">
+                <input type="hidden" name="KEY" placeholder="Select a date" readonly="readonly" value="{{data.KEY}}">
+                <ul>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Date</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" name="DATE" placeholder="Select a date" readonly="readonly"
+                                        id="statusDate">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Store</div>
+                                <div class="item-input-wrap">
+                                    <input id="STORE" type="text" name="STORE" placeholder="Input store name"
+                                        value="{{data.STORE}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Vendor</div>
+                                <div class="item-input-wrap">
+                                    <input id="VENDOR" type="text" name="VENDOR" placeholder="Input vendor name"
+                                        value="{{data.VENDOR}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Truck</div>
+                                <div class="item-input-wrap">
+                                    <input id="TRUCK" type="text" name="TRUCK" placeholder="Input driver name"
+                                        value="{{data.TRUCK}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Driver</div>
+                                <div class="item-input-wrap">
+                                    <input id="DRIVER" type="text" name="DRIVER" placeholder="Input driver name"
+                                        value="{{data.DRIVER}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Phone</div>
+                                <div class="item-input-wrap">
+                                    <input ID="PHONE" type="text" name="PHONE" placeholder="Input phone number"
+                                        value="{{data.PHONE}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content item-input">
+                            <div class="item-inner">
+                                <div class="item-title item-label">Note</div>
+                                <div class="item-input-wrap">
+                                    <input type="text" name="NOTE" placeholder="Input some note" value="{{data.NOTE}}">
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-inner">
+                                <div class="item-title">Color</div>
+                                <div class="item-after">
+                                    <div class="item-media"><i class="icon f7-icons show-color"
+                                            style="color:{{data.COLOR}}">bookmark_fill</i></div>
+                                    <select name="COLOR" class="choice-color show-color" style="color:{{data.COLOR}}">
+                                        <option value="#cddc39" selected class="bg-color-lime">lime</option>
+                                        <option value="#ff3b30" class="bg-color-red">red</option>
+                                        <option value="#4cd964" class="bg-color-green">green</option>
+                                        <option value="#2196f3" class="bg-color-blue">blue</option>
+                                        <option value="#ff2d55" class="bg-color-pink">pink</option>
+                                        <option value="#ffcc00" class="bg-color-yellow">yellow</option>
+                                        <option value="#ff9500" class="bg-color-orange">orange</option>
+                                        <option value="#9c27b0" class="bg-color-purple">purple</option>
+                                        <option value="#673ab7" class="bg-color-deeppurple">deeppurple</option>
+                                        <option value="#5ac8fa" class="bg-color-lightblue">lightblue</option>
+                                        <option value="#009688" class="bg-color-teal">teal</option>
+                                        <option value="#ff6b22" class="bg-color-deeporange">deeporange</option>
+                                        <option value="#8e8e93" class="bg-color-gray">gray</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </form>
+        </div>
+    </div>
+</template>
+<style>
+    p {
+        margin: 10px 0;
+    }
+</style>
+<script>
+    return {
+        // Lifecycle Hooks
+        beforeCreate() {
+            console.log('componentBeforeCreate', this)
+        },
+        created() {
+            console.log('componentCreated', this)
+        },
+        beforeMount() {
+            console.log('componentBeforeMount', this)
+        },
+        mounted() {
+            console.log('componentMounted', this);
+        },
+        beforeDestroy() {
+            console.log('componentBeforeDestroy', this);
+        },
+        destroyed() {
+            console.log('componentDestroyed', this);
+        },
+        // Component Data
+        data: function () {
+            // Must return an object
+            return {
+                name: 'Jimmy',
+                age: 25,
+                like: ['Tennis', 'Chess', 'Football'],
+            }
+        },
+        // Component Methods
+        methods: {
+            openAlert: function () {
+                var self = this;
+                self.$app.dialog.alert('Hello World');
+            },
+            createAuto: function(el,key){
+                var tmp = app.autocomplete.create({
+                    inputEl: el,
+                    openIn: 'dropdown',
+                    preloader: true, //enable preloader
+                    /* If we set valueProperty to "id" then input value on select will be set according to this property */
+                    valueProperty: key, //object's "value" property name
+                    textProperty: key, //object's "text" property name
+                    limit: 20, //limit to 20 results
+                    typeahead: true,
+                    //dropdownPlaceholderText: 'Try "JavaScript"',
+                    source: function (query, render) {
+                        var autocomplete = this;
+                        var results = [];
+                        if (query.length === 0) {
+                            render(results);
+                            return;
+                        }
+                        // Show Preloader
+                        autocomplete.preloaderShow();
+
+                        loadLSM("DATA", function (data) {
+                            // Find matched items
+                            //debugger;
+                            var d = data.sort(function(a,b){
+                                return b.ID-a.ID;
+                            }).map(function(x){
+                                return x[key];
+                            });
+                            for (var i = 0; i < d.length; i++) {
+                                if (d[i].toLowerCase().indexOf(query.toLowerCase()) === 0){
+                                    if(results.indexOf(d[i])<0)
+                                        results.push(d[i]);
+                                } 
+                            }
+                            
+                            // Hide Preoloader
+                            autocomplete.preloaderHide();
+                            // Render items by passing array with result items
+                            render(results);
+                        });                        
+                    }
+                });
+            }
+        },
+        // Page Events
+        on: {
+            pageMounted: function (e, page) {
+                console.log('pageMounted', page);
+            },
+            pageInit: function (e, page) {
+                console.log('pageInit', page);
+            },
+            pageBeforeIn: function (e, page) {
+                console.log('pageBeforeIn', page);
+                //debugger;
+                var self = this;
+                var calendarDefault = app.calendar.create({
+                    inputEl: '#statusDate',
+                    value: self.data.DATE || new Date(),
+                    // disabled: function (date) {
+                    //     if (date > new Date()) {
+                    //         return true;
+                    //     }
+                    //     else {
+                    //         return false;
+                    //     }
+                    // },
+                    on: {
+                        dayClick: function (cl, el, y, m, d) {
+                            setTimeout(function () {
+                                now = new Date(y, m, d)
+                                app.data.current = now;
+                                calendarDefault.close();
+                            }, 0)
+                        }
+                    }
+                });
+                var d = self.data.DATE;
+                if (!d.getTime) {
+                    try {
+                        d = new Date(d);
+                    } catch (er) {
+                        d = new Date();
+                    }
+
+                }
+                calendarDefault.setValue([d]);
+                var c = self.data.COLOR;
+                if (!c || c.length == 0) {
+                    c = "#cddc39";
+                }
+                $$("choice-color").val(c);
+                self.createAuto("#STORE","STORE");
+                self.createAuto("#VENDOR","VENDOR");
+                self.createAuto("#TRUCK","TRUCK");
+                self.createAuto("#DRIVER","DRIVER");
+                self.createAuto("#PHONE","PHONE");
+            },
+            pageAfterIn: function (e, page) {
+                console.log('pageAfterIn', page);
+                $$(".choice-color").change(function () {
+                    var vl = $$(this).val();
+                    $$(".show-color").css("color", vl);
+                });
+                var self = this;
+                $$(".save-data").on("click", function () {
+                    var formData = app.form.convertToData('#my-form');
+                    if (!formData.ID || formData.ID < 1) {
+                        formData.ID = new Date().getTime();
+                    }
+                    console.log(formData);
+                    app.data.items.push(formData);
+                    app.data.list.replaceAllItems(app.data.items);
+                    app.methods.addEvent(formData.DATE, formData.COLOR);
+                    app.methods.updateCalenda();
+                    replaceLSM("DATA", formData, "ID");
+                });
+            },
+            pageBeforeOut: function (e, page) {
+                console.log('pageBeforeOut', page);
+            },
+            pageAfterOut: function (e, page) {
+                console.log('pageAfterOut', page);
+            },
+            pageBeforeRemove: function (e, page) {
+                console.log('pageBeforeRemove', page);
+                $$(".virtual-list ul").css("height", "auto");
+            },
+        }
+    }
+</script>

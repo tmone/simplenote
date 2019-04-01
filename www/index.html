@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!--
+  Customize this policy to fit your own app's needs. For more guidance, see:
+      https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+  Some notes:
+      * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+      * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+      * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+          * Enable inline JS: add 'unsafe-inline' to default-src
+  -->
+  <meta http-equiv="Content-Security-Policy"
+    content="script-src 'self' * 'unsafe-inline' 'unsafe-eval' data: gap: content:; media-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap: content:">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="theme-color" content="#cddc39">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <title>Simple Note</title>
+
+  <link rel="stylesheet" href="framework7/css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="css/icons.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+
+<body class="color-theme-lime">
+  <div id="app">
+    <!-- Status bar overlay for fullscreen mode-->
+    <div class="statusbar"></div>
+    <!-- Left panel with cover effect-->
+    <div class="panel panel-left panel-cover theme-dark">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title">History</div>
+            </div>
+          </div>
+          <div class="page-content ">
+            <div class="block block-strong no-padding">
+              <div id="demo-calendar-inline-container"></div>
+            </div>
+            <div class="block">
+              <p class="row">
+                <div class="col"></div>
+                <button class="col button copy-all panel-close">
+                  <i class="icon f7-icons ios-only">attachment</i>
+                  <i class="icon material-icons md-only">attach_file</i>
+                  <span>Copy</span>
+                </button>
+                <div class="col"></div>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main safe-areas">
+      <!-- Page, data-name contains page name which can be used in callbacks -->
+      <div class="page" data-name="home">
+        <!-- Top Navbar -->
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons ios-only">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+            <div class="title sliding">Simple Note</div>
+            <div class="right">
+              <a class="link icon-only searchbar-enable" data-searchbar=".searchbar-demo">
+                <i class="icon f7-icons ios-only">search</i>
+                <i class="icon material-icons md-only">search</i>
+              </a>
+            </div>
+            <form data-search-container=".search-list" data-search-in=".search-avaliable"
+              class="searchbar searchbar-expandable searchbar-demo searchbar-init">
+              <div class="searchbar-inner">
+                <div class="searchbar-input-wrap">
+                  <input type="search" placeholder="Search" />
+                  <i class="searchbar-icon"></i>
+                  <span class="input-clear-button"></span>
+                </div>
+                <span class="searchbar-disable-button">Cancel</span>
+              </div>
+            </form>
+          </div>
+
+        </div>
+        <!-- Scrollable page content-->
+        <div class="page-content">
+          <div class="searchbar-backdrop"></div>
+          <div class="list search-list searchbar-not-found">
+            <ul>
+              <li>Nothing found</li>
+            </ul>
+          </div>
+          <div class="list virtual-list search-list searchbar-found media-list no-chevron">
+
+          </div>
+          <div class="fab fab-right-bottom fab-morph searchbar-hide-on-search"
+            data-morph-to=".demo-fab-fullscreen-sheet.fab-morph-target">
+            <a href="/note/0/">
+              <i class="icon f7-icons ios-only">add</i>
+              <i class="icon material-icons md-only">add</i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  </div>
+
+  <!-- Cordova -->
+
+  <script src="cordova.js"></script>
+
+
+  <!-- Framework7 library -->
+  <script src="framework7/js/framework7.bundle.min.js"></script>
+
+  <!-- Plugin LSM -->
+  <script src="js/LSM.js"></script>
+
+  <!-- App routes -->
+  <script src="js/routes.js"></script>
+
+  <!-- Your custom app scripts -->
+  <script src="js/app.js"></script>
+</body>
+
+</html>

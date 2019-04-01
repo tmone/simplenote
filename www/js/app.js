@@ -171,7 +171,7 @@ $$(document).on('deviceready', function () {
       '</div>' +
       '<div class="swipeout-actions-right">' +
       '<a data-id="{{ID}}" href="#" data-confirm="Are you sure you want to delete this item?" ' +
-      ' class="swipeout-delete swipeout-overswipe delete-note"><i class="icon f7-icons  ios-only">trash</i><i class="icon material-icons md-only">delete</i></a>' +
+      ' class="swipeout-delete delete-note"><i class="icon f7-icons  ios-only">trash</i><i class="icon material-icons md-only">delete</i></a>' +
       '</div>' +
       '</li>',
     // Item height

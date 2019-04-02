@@ -15,7 +15,7 @@ var app = new Framework7({
   theme: 'auto', // Automatic theme detection
   swipeout: {
     noFollow: true,
-    removeElements: true,
+    removeElements: false,
   },
   // App root data
   data: function () {
@@ -73,10 +73,19 @@ var app = new Framework7({
       if (f.length == 0) {
         app.data.events.push({ date: cdate, color: color });
       }
+    },
+    deleteNote: function(id){
+      deleteLSM("DATA", { ID: id }, "ID");  
     }
   },
   // App routes
   routes: routes,
+  on:{
+    swipeoutDeleted:function(el){
+      var t= $$(el).data("id");
+      app.methods.deleteNote(t);
+    }
+  }
 });
 
 // Init/Create main view
@@ -129,6 +138,7 @@ $$(document).on('deviceready', function () {
   console.log("Device is ready!");
   //
   var date = new Date();
+  //date = new Date(date.getTime() + (date.getTimezoneOffset() * 60000));
   app.data.current = date;
   var key = dateKey(date);
 
@@ -152,7 +162,7 @@ $$(document).on('deviceready', function () {
     // List item Template7 template
     itemTemplate:
       '<li class="swipeout deleted-callback" data-id="{{ID}}">' +
-      '<div class="swipeout-content ">' +
+      '<div class="swipeout-content "  data-id="{{ID}}">' +
       '<a href="/note/{{ID}}/" class="item-link item-content">' +
       '<div class="item-inner search-avaliable">' +
       '<div class="item-title-row">' +
@@ -169,9 +179,9 @@ $$(document).on('deviceready', function () {
       '<div class="swipeout-actions-left">' +
       '<a href="#" class="swipeout-overswipe copy-single" data-id="{{ID}}"><i class="icon f7-icons  ios-only">attachment</i><i class="icon material-icons md-only">attach_file</i></a>' +
       '</div>' +
-      '<div class="swipeout-actions-right">' +
-      '<a data-id="{{ID}}" href="#" data-confirm="Are you sure you want to delete this item?" ' +
-      ' class="swipeout-delete delete-note"><i class="icon f7-icons  ios-only">trash</i><i class="icon material-icons md-only">delete</i></a>' +
+      '<div class="swipeout-actions-right"  data-id="{{ID}}">' +
+      '<a data-id="{{ID}}" href="#" data-confirm="Are you sure want to delete this item?" data-confirm-title="Simple Note?"' +
+      ' class="swipeout-delete swipeout-overswipe delete-note bg-red"><i class="icon f7-icons  ios-only">trash</i><i class="icon material-icons md-only">delete</i></a>' +
       '</div>' +
       '</li>',
     // Item height
@@ -195,7 +205,7 @@ $$(document).on('deviceready', function () {
 
   $$(".copy-all").on("click", function () {
     var key = dateKey(app.data.current);
-    var g = key.Split().reserve().join().replace(/[-]/g,"/");
+    var g = key.split('').reverse().join('').replace(/[-]/g,"/");
     selectLSM("DATA", { KEY: key }, "KEY", function (rs) {
       var str = "Date: "+g+"\n";
       for (var i = 0; i < rs.length; i++) {
@@ -264,10 +274,26 @@ $$(document).on('deviceready', function () {
   });
   $$(".delete-note").on("click", function () {
     var id = $$(this).data("id");
-    deleteLSM("DATA", { ID: id }, "ID");    
+    // app.toast.create({
+    //   text: id,
+    //   closeTimeout: 2000,
+    // }).open();
+    app.methods.deleteNote(id);  
   });
   $$('.deleted-callback').on('swipeout:deleted', function () {
     var id = $$(this).data("id");
-    deleteLSM("DATA", { ID: id }, "ID");    
+    // app.toast.create({
+    //   text: id,
+    //   closeTimeout: 2000,
+    // }).open();
+    app.methods.deleteNote(id);
+  });
+  app.on("swipeoutDeleted",function(el){
+    var id =$$(el).data("id");
+    // app.toast.create({
+    //   text: id,
+    //   closeTimeout: 2000,
+    // }).open();
+    app.methods.deleteNote(id);
   });
 });

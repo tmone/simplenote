@@ -280,9 +280,17 @@
                 var self = this;
                 $$(".save-data").on("click", function () {
                     var formData = app.form.convertToData('#my-form');
-                    if (!formData.ID || formData.ID < 1) {
+                    try{
+                        if (!formData.ID || formData.ID < 1) {
                         formData.ID = new Date().getTime();
                     }
+                    if(+formData.ID<=0){
+                        formData.ID = new Date().getTime();
+                    }
+                    }catch(ex){
+                        formData.ID = new Date().getTime();
+                    }
+                    
                     console.log(formData);
                     app.data.items.push(formData);
                     app.data.list.replaceAllItems(app.data.items);

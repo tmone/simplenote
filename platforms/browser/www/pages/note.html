@@ -279,12 +279,25 @@
                 });
                 var self = this;
                 $$(".save-data").on("click", function () {
-                    var formData = app.form.convertToData('#my-form');
-                    if (!formData.ID || formData.ID < 1) {
-                        formData.ID = new Date().getTime();
+                    var formData = app.form.convertToData('#my-form');                    
+                    try{
+                        if (!formData.ID || formData.ID < 1) {
+                            formData.ID = new Date().getTime();
+                            app.data.items.push(formData);
+                        }
+                        if(+formData.ID<=0){
+                            formData.ID = new Date().getTime();
+                            app.data.items.push(formData);
+                        }
+                    }catch(ex){
+                        formData.ID = new Date().getTime();                       
                     }
-                    console.log(formData);
-                    app.data.items.push(formData);
+                    formData.ID = +formData.ID;
+                    var it = app.data.items.filter(x=>x.ID == formData.ID);
+                    if(it.length>0){
+                        it[0] = formData;
+                    }
+                    console.log(formData);                    
                     app.data.list.replaceAllItems(app.data.items);
                     app.methods.addEvent(formData.DATE, formData.COLOR);
                     app.methods.updateCalenda();

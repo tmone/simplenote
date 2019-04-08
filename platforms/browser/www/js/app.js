@@ -205,7 +205,7 @@ $$(document).on('deviceready', function () {
 
   $$(".copy-all").on("click", function () {
     var key = dateKey(app.data.current);
-    var g = key.split('').reverse().join('').replace(/[-]/g,"/");
+    var g = key.split('-').reverse().join('/');
     selectLSM("DATA", { KEY: key }, "KEY", function (rs) {
       var str = "Date: "+g+"\n";
       for (var i = 0; i < rs.length; i++) {

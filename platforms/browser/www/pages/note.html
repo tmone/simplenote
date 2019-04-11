@@ -293,6 +293,7 @@
                         formData.ID = new Date().getTime();                       
                     }
                     formData.ID = +formData.ID;
+                    formData.KEY = formData.DATE;
                     var it = app.data.items.filter(x=>x.ID == formData.ID);
                     if(it.length>0){
                         it[0] = formData;
@@ -313,6 +314,7 @@
             pageBeforeRemove: function (e, page) {
                 console.log('pageBeforeRemove', page);
                 $$(".virtual-list ul").css("height", "auto");
+                app.methods.loadADate();
             },
         }
     }

@@ -293,6 +293,7 @@
                         formData.ID = new Date().getTime();                       
                     }
                     formData.ID = +formData.ID;
+                    formData.KEY = DATE;
                     var it = app.data.items.filter(x=>x.ID == formData.ID);
                     if(it.length>0){
                         it[0] = formData;
